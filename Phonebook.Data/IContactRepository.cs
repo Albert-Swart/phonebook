@@ -24,30 +24,30 @@ namespace Phonebook.Data
 
     public class RetrieveContactsResult
     {
-        public RetrieveContactsResult(bool success, IEnumerable<string> messages, IEnumerable<Contact> results)
-        {
-            Success = success;
-            Messages = messages;
-            Results = results;
-        }
+        //public RetrieveContactsResult(bool success, IEnumerable<string> messages, IEnumerable<Contact> results)
+        //{
+        //    Success = success;
+        //    Messages = messages;
+        //    Results = results;
+        //}
 
-        public bool Success { get; }
+        public bool Success { get; set; }
 
-        public IEnumerable<string> Messages { get; }
+        public IEnumerable<string> Messages { get; set; } = new List<string>();
 
-        public IEnumerable<Contact> Results { get; }
+        public IEnumerable<Contact> Results { get; set; } = new List<Contact>();
     }
 
     public class Contact
     {
-        public Contact(string name, string phoneNumber)
-        {
-            Name = name;
-            PhoneNumber = phoneNumber;
-        }
+        //public Contact(string name, string phoneNumber)
+        //{
+        //    Name = name;
+        //    PhoneNumber = phoneNumber;
+        //}
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public string PhoneNumber { get; }
+        public string PhoneNumber { get; set; }
     }
 }

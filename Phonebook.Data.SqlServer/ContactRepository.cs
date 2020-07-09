@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 
 namespace Phonebook.Data.SqlServer
 {
@@ -71,15 +70,14 @@ namespace Phonebook.Data.SqlServer
                     {
                         while (reader.Read())
                         {
-                            var contact = new Contact((string)reader[0], (string)reader[1]);
+                            var contact = new Contact { Name = (string)reader[0], PhoneNumber = (string)reader[1] };
                             contacts.Add(contact);
                         }
                     }
                 }
             }
 
-            var result = new RetrieveContactsResult(messages.Count == 0, messages, contacts);
-
+            var result = new RetrieveContactsResult { Success = messages.Count == 0, Messages = messages, Results = contacts };
             return result;
         }
     }

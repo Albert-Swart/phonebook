@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Data", "Phonebook.Data\Phonebook.Data.csproj", "{7CF95E3C-5CB2-4AA1-8B12-CE1AE75DEC94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Data", "Phonebook.Data\Phonebook.Data.csproj", "{7CF95E3C-5CB2-4AA1-8B12-CE1AE75DEC94}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Phonebook.Data.SqlServer.DB", "Phonebook.Data.SqlServer.DB\Phonebook.Data.SqlServer.DB.sqlproj", "{AEC76BFA-650D-43B4-953B-6C15E6985D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Data.SqlServer", "Phonebook.Data.SqlServer\Phonebook.Data.SqlServer.csproj", "{25500186-B042-473B-8630-9076B7DA9430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Data.SqlServer", "Phonebook.Data.SqlServer\Phonebook.Data.SqlServer.csproj", "{25500186-B042-473B-8630-9076B7DA9430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Web.Api", "Phonebook.Web.Api\Phonebook.Web.Api.csproj", "{ED858AE4-31EA-4B4C-8F59-848AA4FA484B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Web.Api", "Phonebook.Web.Api\Phonebook.Web.Api.csproj", "{ED858AE4-31EA-4B4C-8F59-848AA4FA484B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Web.UI", "Phonebook.Web.UI\Phonebook.Web.UI.csproj", "{B9F6DE1F-93E7-4462-BA04-3FFF35DC5898}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{ED858AE4-31EA-4B4C-8F59-848AA4FA484B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED858AE4-31EA-4B4C-8F59-848AA4FA484B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED858AE4-31EA-4B4C-8F59-848AA4FA484B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F6DE1F-93E7-4462-BA04-3FFF35DC5898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F6DE1F-93E7-4462-BA04-3FFF35DC5898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F6DE1F-93E7-4462-BA04-3FFF35DC5898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F6DE1F-93E7-4462-BA04-3FFF35DC5898}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

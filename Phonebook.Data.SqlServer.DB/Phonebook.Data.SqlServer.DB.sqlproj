@@ -67,4 +67,7 @@
     <Build Include="dbo\Stored Procedures\usp_add_contact.sql" />
     <Build Include="dbo\Stored Procedures\usp_retrieve_contacts.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment.sql" />
+  </ItemGroup>
 </Project>

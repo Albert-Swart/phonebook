@@ -1,0 +1,26 @@
+﻿@model Phonebook.Data.RetrieveContactsResult
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (Model.Results.Count() > 0)
+{
+    <div>
+        @foreach (var entry in Model.Results)
+        {
+            <p>@entry.Name</p>
+            <p>@entry.PhoneNumber</p>
+        }
+    </div>
+}
+else
+{
+    <div>
+        No entries found.
+    </div>
+}
