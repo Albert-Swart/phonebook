@@ -1,11 +1,15 @@
 ﻿@model Phonebook.Data.RetrieveContactsResult
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "CIB Assesment";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Contacts</h1>
+</div>
+
+<div>
+    <p>This page displays a list of current contacts. The post-deploy script of the included SQL project will create a few default entries. By default this page will list
+    all of the contacts with an indicator of the phonebooks that they are associated with. Use the filters below to refine the results. Use the Add Contacts menu option to add new contacts.</p>
 </div>
 
 @if (Model.Results.Count() > 0)
@@ -15,6 +19,7 @@
         {
             <p>@entry.Name</p>
             <p>@entry.PhoneNumber</p>
+            <p>@string.Join(" : ", entry.AssociatedPhonebooks)</p>
         }
     </div>
 }

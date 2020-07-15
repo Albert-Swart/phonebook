@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Phonebook.Data;
 using Phonebook.Web.Api.Models;
+using System.Linq;
 
 namespace Phonebook.Web.Api.Controllers
 {
@@ -23,9 +24,9 @@ namespace Phonebook.Web.Api.Controllers
 
         [HttpGet]
         [Route("contacts")]
-        public RetrieveContactsResult AllEntries([FromQuery] ContactsQueryModel input)
+        public RetrieveContactsResult RetrievePhonebookContacts([FromQuery] SimpleContactQueryModel input)
         {
-            var result = contactRepository.RetrieveContacts(input.PhoneBookName);
+            var result = contactRepository.RetrieveContacts(new string[] { }, new string[] { });
             return result;
         }
 
@@ -33,7 +34,14 @@ namespace Phonebook.Web.Api.Controllers
         [Route("addcontact")]
         public AddContactResult AddContact([FromBody] NewContactRequestModel input)
         {
-            var result = contactRepository.AddContact(input.Name, input.PhoneNumber, input.PhoneBook);
+            var contact = new Contact
+            {
+                Name = input.ContactName,
+                PhoneNumber = input.ContactPhoneNumber,
+                AssociatedPhonebooks = input.AssociateWithPhonebooks
+            };
+
+            var result = contactRepository.AddContact(contact);
             return result;
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +27,7 @@ namespace Phonebook.Web.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new RetrieveContactsResult { Success = false };
+            var model = new RetrieveContactsResult();
 
             try
             {
@@ -54,7 +51,8 @@ namespace Phonebook.Web.UI.Controllers
             return View(model);
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult AddContact()
         {
             return View();
         }

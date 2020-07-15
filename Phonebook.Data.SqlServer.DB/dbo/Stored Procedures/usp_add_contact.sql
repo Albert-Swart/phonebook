@@ -1,51 +1,47 @@
 ﻿CREATE proc [dbo].[usp_add_contact]
 	@name varchar(100),
 	@phone_number varchar(100),
-	@phonebook_name varchar(100)
+	@associated_phonebooks ust_list_of_string readonly
 as
 begin
 
 	set nocount on
 
-	declare @messages table ([value] varchar(max))
+	begin try
 
-	insert into @messages
-	select 'The contact ' + @name + ' with phone number ' + @phone_number + ' is already associated with phonebook ' + @phonebook_name
-	from 
-		phonebook_entries pe
-		inner join phonebooks pb on pb.phonebook_id = pe.phonebook_id
-		inner join contacts c on c.contact_id = pe.contact_id
-	where 
-		c.[name] = @name
-		and c.phone_number = @phone_number
-		and pb.[name] = @phonebook_name
+		begin tran
 
-	if not exists(select 1 from @messages)
-	begin
+		declare @contact_id int
 
-		begin try
+		select
+			@contact_id = contact_id
+		from
+			contacts
+		where
+			[name] = @name
+			and [phone_number]= @phone_number
 
-			begin tran
+		if @contact_id is null
+		begin
 
-			declare @contact_id int
+			insert into contacts([name], phone_number) values(@name, @phone_number)
+			set @contact_id = SCOPE_IDENTITY()
 
-			select
-				@contact_id = contact_id
-			from
-				contacts
-			where
-				[name] = @name
-				and [phone_number]= @phone_number
+		end
 
-			if @contact_id is null
-			begin
+		declare @associated table([name] varchar(100), processed bit)
 
-				insert into contacts([name], phone_number) values(@name, @phone_number)
-				set @contact_id = SCOPE_IDENTITY()
+		insert @associated
+		select distinct([value]), 0 from @associated_phonebooks
 
-			end
+		declare @phonbook_id int
+		declare @phonebook_name varchar(100)
 
-			declare @phonbook_id int
+		while(select top 1 1 from @associated where processed = 0) > 0
+		begin
+
+			select top 1 @phonebook_name = [name] from @associated where processed = 0
+
 			select @phonbook_id = phonebook_id from phonebooks where [name] = @phonebook_name
 
 			if @phonbook_id is null
@@ -56,22 +52,27 @@ begin
 	
 			end
 
-			insert into phonebook_entries(contact_id, phonebook_id) values (@contact_id, @phonbook_id)
+			if not exists(select 1 from phonebook_entries where contact_id = @contact_id and phonebook_id = @phonbook_id)
+			begin
+				
+				insert into phonebook_entries(contact_id, phonebook_id) values (@contact_id, @phonbook_id)
 
-			commit tran
-		end try
-		begin catch
+			end
 
-			rollback tran
+			update @associated set processed = 1 where [name] = @phonebook_name
+			
+		end
 
-			insert into @messages
-			select 'There was a problem processing your request. Please contact your administrator to resolve.'
+		commit tran
 
-		end catch
+	end try
+	begin catch
 
-	end
+		rollback tran
 
-	select [value] from @messages
+		select 'There was a problem processing your request. Please contact your administrator.'
+
+	end catch
 
 	set nocount off
 
