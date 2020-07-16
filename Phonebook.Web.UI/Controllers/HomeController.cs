@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Phonebook.Data;
@@ -52,7 +53,13 @@ namespace Phonebook.Web.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddContact()
+        public IActionResult AddContacts()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddContacts(ContactDetailsViewModel model)
         {
             return View();
         }

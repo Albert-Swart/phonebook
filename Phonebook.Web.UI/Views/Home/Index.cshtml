@@ -14,14 +14,30 @@
 
 @if (Model.Results.Count() > 0)
 {
-    <div>
-        @foreach (var entry in Model.Results)
-        {
-            <p>@entry.Name</p>
+<div>
+    @foreach (var entry in Model.Results)
+    {
+        @*<div class="well">
+            <h3>
+                <strong>@entry.Name</strong>
+                <span class="pull-right label labelprimary">@entry.PhoneNumber</span>
+            </h3>
+            <span class="lead">@string.Join(" : ", entry.AssociatedPhonebooks)</span>
+        </div>*@
+
+        @*<p>@entry.Name</p>
             <p>@entry.PhoneNumber</p>
-            <p>@string.Join(" : ", entry.AssociatedPhonebooks)</p>
-        }
-    </div>
+            <p>@string.Join(" : ", entry.AssociatedPhonebooks)</p>*@
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@entry.Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@string.Join(" : ", entry.AssociatedPhonebooks)</h6>
+                <p class="card-text">@entry.PhoneNumber</p>
+            </div>
+        </div>
+    }
+</div>
 }
 else
 {

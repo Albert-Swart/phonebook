@@ -1,0 +1,40 @@
+﻿@model ContactDetailsViewModel
+@{
+    ViewData["Title"] = "CIB Assesment";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Add Contacts</h1>
+</div>
+
+<div>
+    <p>
+        This page needs to have the form to add the contacts.
+    </p>
+</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.PhoneNumber)
+
+        foreach (var item in Model.AssociatedPhonebooks)
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="AssociatedPhonebooks"
+                           value="@item"
+                           /> @item
+                    </label>
+                </div>
+            }
+
+            <input class="btn btn-primary" type="submit" value="Add" />
+        }
+</div>
+
