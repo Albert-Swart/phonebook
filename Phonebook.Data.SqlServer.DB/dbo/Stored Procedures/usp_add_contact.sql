@@ -39,6 +39,9 @@ begin
 
 		while(select top 1 1 from @associated where processed = 0) > 0
 		begin
+			
+			set @phonbook_id = null
+			set @phonebook_name = null
 
 			select top 1 @phonebook_name = [name] from @associated where processed = 0
 
@@ -60,7 +63,7 @@ begin
 			end
 
 			update @associated set processed = 1 where [name] = @phonebook_name
-			
+
 		end
 
 		commit tran
